@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EvolveX</title>
+    <link rel="icon" type="image/gif" href="x (2).png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            background-image: url('manzara.jpeg');
+            background-size: cover;
+            background-position: center;
+            position: relative; 
+        }
+
+        #video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            object-fit: cover;
+            filter: brightness(70%);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .developer-box,
+        .bot-box {
+            flex: 1;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 0 10px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            width: 45%;
+        }
+
+        .developer-box img,
+        .bot-box img {
+            width: 100px;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: block;
+        }
+
+        .developer-box .developer-info,
+        .bot-box .bot-invite {
+            margin-top: 10px;
+        }
+
+        .developer-github,
+        .bot-invite {
+            display: inline-block;
+            background-color: rgba(175, 79, 254, 0.663);
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .bot-description {
+            color: #ddd;
+            margin-bottom: 10px;
+        }
+
+        .commands-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(255, 0, 255, 0.5);
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #fff;
+            z-index: 1;
+            cursor: pointer;
+            
+            transition: background-color 0.3s ease;
+           
+        }
+
+        .commands-button:hover {
+            background-color: rgba(255, 0, 255, 0.8);
+            
+        }
+
+        .commands-info {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background-image: url('botcommand.gif');
+            
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            
+        }
+
+        .commands-list {
+            list-style-type: none;
+            padding: 0;
+            text-align: left;
+            max-width: 80%;
+            overflow-y: auto;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .commands-list li {
+            margin-bottom: 10px;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 24px;
+            z-index: 2;
+        }
+
+        
+        .circle {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            pointer-events: none; 
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <video id="video-background" src="background.mp4" autoplay loop muted></video>
+    
+    <div class="container">
+        <div class="developer-box">
+            <img src="developer.png" alt="Developer Profile Picture">
+            <div class="developer-info">
+                <div class="developer-name">Yiğit ULUHAN</div>
+                <div class="developer-description">Sadece kendin için yaşa, kendin için çalış, kendin için başar.</div>
+                <a href="https://github.com/YiTechX" class="developer-github">GitHub</a>
+            </div>
+        </div>
+        <div class="bot-box">
+            <img src="x (2).png" alt="Bot Profile Picture">
+            <div class="bot-info">
+                <div class="bot-description">EvolveX, Anti-Raid, moderasyon ve daha fazlası!</div>
+                <div class="bot-invite">
+                    <a href="https://discord.com/api/oauth2/authorize?client_id=1175889758925369475&permissions=8&scope=bot">EvolveX'ı Sunucunuza Davet Edin</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="commands-button" onclick="showCommands()">Commands</button>
+    <div class="commands-info" id="commands-info">
+        <span class="close-button" onclick="hideCommands()">×</span>
+        <ul class="commands-list">
+            <li>afk - Afk modunu açar/kapatır.</li>
+            <li>antiraid - Anti-Raid sistemini açar/kapatır.</li>
+            <li>avatar - Belirtilen kullanıcının avatarını paylaşır.</li>
+            <li>bahis - Belirtilen miktarla bahis yapar. Örneğin: xbahis 100</li>
+            <li>capsengel - Caps-Engel açar/kapatır.</li>
+            <li>günlük - Günlük ödül alırsınız.</li>
+            <li>help - Shows this message</li>
+            <li>hesap - Banka hesap bilgilerinizi gösterir.</li>
+            <li>level - Levelinizi görüntüler.</li>
+            <li>levelsys - Level sistemini açar/kapatır.</li>
+            <li>market - Marketi görüntüler.</li>
+            <li>otocevap - Otocevap ayarlar.</li>
+            <li>para - Mevcut bakiyenizi gösterir.</li>
+            <li>pazar - Pazardaki ürünleri gösterir.</li>
+            <li>ping - Botun pingini gösterir.</li>
+            <li>profil - Profil bilgilerinizi gösterir.</li>
+            <li>rank - Levelinizi görüntüler.</li>
+            <li>rastgele - Rastgele bir sayı gösterir.</li>
+            
+        </ul>
+    </div>
+
+    <script>
+        const video = document.getElementById("video-background");
+        const developerBox = document.querySelector(".developer-box");
+        const botBox = document.querySelector(".bot-box");
+        let backgroundIndex = 0; 
+
+        
+        document.addEventListener("click", function (event) {
+            const circle = document.createElement("div"); 
+            circle.classList.add("circle"); 
+            circle.style.left = event.clientX + "px"; 
+            circle.style.top = event.clientY + "px"; 
+            document.body.appendChild(circle); 
+
+           
+            setTimeout(() => {
+                circle.style.transform = "scale(1.5)"; 
+                circle.style.opacity = 0; 
+            }, 10); 
+            setTimeout(() => {
+                circle.remove(); 
+            }, 500);
+        });
+
+        video.addEventListener("canplay", () => {
+            developerBox.style.opacity = 1;
+            botBox.style.opacity = 1;
+        });
+
+        video.addEventListener("ended", () => {
+            
+            const backgrounds = ["manzara.jpeg", "new-background.jpg"];
+           
+            backgroundIndex = (backgroundIndex + 1) % backgrounds.length;
+            
+            document.body.style.backgroundImage = `url('${backgrounds[backgroundIndex]}')`;
+            
+            setTimeout(() => {
+                video.play();
+            }, 10000);
+        });
+
+        function showCommands() {
+            const commandsInfo = document.getElementById("commands-info");
+            commandsInfo.style.display = "flex";
+            setTimeout(() => {
+                commandsInfo.style.opacity = 1;
+            }, 50);
+        }
+
+        function hideCommands() {
+            const commandsInfo = document.getElementById("commands-info");
+            commandsInfo.style.opacity = 0;
+            setTimeout(() => {
+                commandsInfo.style.display = "none";
+            }, 500);
+        }
+    </script>
+</body>
+</html>
